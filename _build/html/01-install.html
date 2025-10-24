@@ -35,6 +35,8 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/lightbox.css?v=68759a51" />
+    <link rel="stylesheet" type="text/css" href="_static/tables.css?v=b7631870" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -52,14 +54,16 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '01-install';</script>
+    <script src="_static/lightbox.js?v=3dd2c040"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="02 Quick Start" href="02-quickstart.html" />
     <link rel="prev" title="DPDAK (Directly Programmable Data Analysis Kit) Tutorial" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,6 +184,7 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">01 Install and Launch DPDAK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-quickstart.html">02 Quick Start</a></li>
 </ul>
 
     </div>
@@ -375,7 +380,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-quick-start-windows">Method 1: Quick start (Windows)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-just-open-it-windows">Method 1: Just open it! (Windows)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-run-with-a-system-python-environment-windows-macos-linux">Method 2: Run with a system Python environment (Windows/macOS/Linux)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-windows-only">0) Install Python (Windows only)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-activate-a-virtual-environment">1) Create and activate a virtual environment</a></li>
@@ -404,8 +409,8 @@ document.write(`
 <li><p>macOS/Linux: go directly to Method 2 (system Python).</p></li>
 </ul>
 <p>If the Windows quick start doesn’t work or reports missing packages, use Method 2.</p>
-<section id="method-1-quick-start-windows">
-<h2>Method 1: Quick start (Windows)<a class="headerlink" href="#method-1-quick-start-windows" title="Link to this heading">#</a></h2>
+<section id="method-1-just-open-it-windows">
+<h2>Method 1: Just open it! (Windows)<a class="headerlink" href="#method-1-just-open-it-windows" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Download: <a class="reference external" href="https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing">https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing</a></p></li>
 <li><p>Unzip, then double-click <code class="docutils literal notranslate"><span class="pre">dpdak.bat</span></code> in the folder. The DPDAK UI should open.</p></li>
@@ -424,7 +429,7 @@ document.write(`
 <h2>Method 2: Run with a system Python environment (Windows/macOS/Linux)<a class="headerlink" href="#method-2-run-with-a-system-python-environment-windows-macos-linux" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Download: <a class="reference external" href="https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing">https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing</a></p></li>
-<li><p>Unzip the archive, open a terminal, and change into the <code class="docutils literal notranslate"><span class="pre">dpdak</span></code> folder.</p></li>
+<li><p>Unzip the archive, open a terminal, and change into the <code class="docutils literal notranslate"><span class="pre">DPDAK_WIN_64bit__V1_5_0</span></code> folder.</p></li>
 </ul>
 <p>macOS/Linux: start here. Windows: use this if Quick start doesn’t work.</p>
 <p>Create an isolated virtual environment, install the required packages, and start DPDAK via a small launcher script. This keeps your system clean and is easy to reproduce.</p>
@@ -599,6 +604,15 @@ python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </
         <p class="prev-next-title">DPDAK (Directly Programmable Data Analysis Kit) Tutorial</p>
       </div>
     </a>
+    <a class="right-next"
+       href="02-quickstart.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">02 Quick Start</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -615,7 +629,7 @@ python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-quick-start-windows">Method 1: Quick start (Windows)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-just-open-it-windows">Method 1: Just open it! (Windows)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-run-with-a-system-python-environment-windows-macos-linux">Method 2: Run with a system Python environment (Windows/macOS/Linux)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-windows-only">0) Install Python (Windows only)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-activate-a-virtual-environment">1) Create and activate a virtual environment</a></li>

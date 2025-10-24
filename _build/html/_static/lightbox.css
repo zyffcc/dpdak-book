@@ -1,0 +1,29 @@
+/* Simple image lightbox for Jupyter Book */
+#image-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000; /* above theme elements */
+}
+#image-lightbox-overlay.show {
+  display: flex;
+}
+#image-lightbox-overlay img {
+  max-width: 95vw;
+  max-height: 90vh;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  border-radius: 6px;
+}
+#image-lightbox-overlay .lb-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 28px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}

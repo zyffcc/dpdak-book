@@ -1,0 +1,54 @@
+/* Responsive, horizontally scrollable tables with uniform numeric columns */
+.scroll-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0.25rem 0 0.5rem; /* tighter gap below to avoid a big band before Source */
+  background: transparent;
+}
+.scroll-table table {
+  border-collapse: collapse;
+  table-layout: fixed; /* equal-width columns (subject to min-widths below) */
+  width: max-content;   /* size to content so horizontal scroll only when needed */
+  min-width: 100%;      /* but never shrink below container width */
+}
+.scroll-table th,
+.scroll-table td {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--pst-color-border, #ddd);
+}
+/* Make the first column wider for labels; center others and keep numbers on one line */
+.scroll-table th:first-child,
+.scroll-table td:first-child {
+  min-width: 12rem;
+  text-align: left;
+}
+.scroll-table th:not(:first-child),
+.scroll-table td:not(:first-child) {
+  min-width: 5.5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+/* Optional: slightly smaller font for dense numeric tables */
+.scroll-table.small td,
+.scroll-table.small th {
+  font-size: 0.95em;
+}
+
+/* Subtle, minimal horizontal scrollbar styling */
+.scroll-table {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: transparent transparent; /* hide by default */
+}
+.scroll-table:hover {
+  scrollbar-color: var(--pst-color-border, #c8c8c8) transparent; /* show on hover */
+}
+.scroll-table::-webkit-scrollbar {
+  height: 6px; /* thin horizontal bar */
+}
+.scroll-table::-webkit-scrollbar-track {
+  background: transparent; /* avoid solid gray strip */
+}
+.scroll-table::-webkit-scrollbar-thumb {
+  background-color: var(--pst-color-border, #c8c8c8);
+  border-radius: 4px;
+}

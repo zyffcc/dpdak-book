@@ -7,7 +7,7 @@ This page shows how to run DPDak on Windows, macOS, and Linux.
 
 If the Windows quick start doesn’t work or reports missing packages, use Method 2.
 
-## Method 1: Quick start (Windows)
+## Method 1: Just open it! (Windows)
 
 - Download: <https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing>
 - Unzip, then double-click `dpdak.bat` in the folder. The DPDAK UI should open.
@@ -26,7 +26,7 @@ If it doesn’t start or reports missing packages, use the Python-based method b
 ## Method 2: Run with a system Python environment (Windows/macOS/Linux)
 
 - Download: <https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing>
-- Unzip the archive, open a terminal, and change into the `dpdak` folder.
+- Unzip the archive, open a terminal, and change into the `DPDAK_WIN_64bit__V1_5_0` folder.
 
 macOS/Linux: start here. Windows: use this if Quick start doesn’t work.
 

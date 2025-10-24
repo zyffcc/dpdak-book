@@ -6,4 +6,3 @@ root: index
 chapters:
 - file: 01-install
 - file: 02-quickstart
-- file: 03-data-prep
