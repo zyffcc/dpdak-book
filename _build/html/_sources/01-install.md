@@ -1,8 +1,13 @@
 # 01 Install and Launch DPDAK
 
-This page shows how to download and start DPDak on Windows. If double-click startup fails, use the system Python method below. All commands are for Windows PowerShell.
+This page shows how to run DPDak on Windows, macOS, and Linux.
 
-## Quick start
+- Windows: try Quick start first (double-click launcher).
+- macOS/Linux: go directly to Method 2 (system Python).
+
+If the Windows quick start doesn’t work or reports missing packages, use Method 2.
+
+## Method 1: Quick start (Windows)
 
 - Download: <https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing>
 - Unzip, then double-click `dpdak.bat` in the folder. The DPDAK UI should open.
@@ -18,13 +23,18 @@ If it doesn’t start or reports missing packages, use the Python-based method b
 
 ---
 
-## Method 2: Run with a system Python environment
+## Method 2: Run with a system Python environment (Windows/macOS/Linux)
+
+- Download: <https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing>
+- Unzip the archive, open a terminal, and change into the `dpdak` folder.
+
+macOS/Linux: start here. Windows: use this if Quick start doesn’t work.
 
 Create an isolated virtual environment, install the required packages, and start DPDAK via a small launcher script. This keeps your system clean and is easy to reproduce.
 
-### 0) Install Python 
+### 0) Install Python (Windows only)
 
-If you already have Python installed, please ignore this
+If you already have Python installed, please skip to {ref}`Create and activate a virtual environment <venv-create-activate>`. On macOS/Linux, Python is typically preinstalled—skip to Step 1.
 
 1) Go to <https://www.python.org/downloads/windows/>
 
@@ -40,9 +50,14 @@ python --version
 
 You should see a version like `Python 3.11.x`.
 
+(venv-create-activate)=
 ### 1) Create and activate a virtual environment
 
-In your DPDAK folder (**PowerShell Terminal**, You can open it by searching for PowerShell.), run:
+In your DPDAK folder, run the commands for your OS:
+
+`````{tab-set}
+````{tab-item} Windows (PowerShell)
+:sync: windows
 
 ```powershell
 # Create venv
@@ -51,9 +66,24 @@ python -m venv .venv
 # Activate (PowerShell)
 ./.venv/Scripts/Activate.ps1
 
-# If blocked by execution policy, allow scripts for this session first:
-# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
+````
+
+````{tab-item} macOS / Linux (bash/zsh)
+:sync: unix
+
+```bash
+# Create venv (use python3 on most systems)
+python3 -m venv .venv
+
+# Activate (bash/zsh)
+source ./.venv/bin/activate
+
+# If 'python3' is not found, try 'python'
+# python -m venv .venv
+```
+````
+`````
 
 You should see `(.venv)` at the start of the prompt after activation.
 
@@ -62,6 +92,8 @@ You should see `(.venv)` at the start of the prompt after activation.
 ```powershell
 python -m pip install --upgrade pip setuptools wheel
 ```
+
+If 'python' isn’t found on macOS/Linux, use 'python3 -m pip' instead.
 
 ### 3) Install required packages
 
@@ -88,6 +120,7 @@ import sys, threading, importlib
 # === 1) Compatibility: old top-level PIL module names ===
 # Map legacy imports (Image, ImageFont, etc.) to Pillow equivalents.
 _aliases = {
+    "image":      "PIL.Image",
 	"Image":      "PIL.Image",
 	"ImageFont":  "PIL.ImageFont",
 	"ImageDraw":  "PIL.ImageDraw",
@@ -141,5 +174,4 @@ python run_dpdak.py
 
 DPDAK should start. Use this command next time as well (activate the venv first).
 
-> If your `main.py` is in a different location, place `run_dpdak.py` alongside it, or adjust the script to read the correct path to `main.py`.
 

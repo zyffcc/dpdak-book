@@ -375,9 +375,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick start</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-run-with-a-system-python-environment">Method 2: Run with a system Python environment</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python">0) Install Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-quick-start-windows">Method 1: Quick start (Windows)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-run-with-a-system-python-environment-windows-macos-linux">Method 2: Run with a system Python environment (Windows/macOS/Linux)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-windows-only">0) Install Python (Windows only)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-activate-a-virtual-environment">1) Create and activate a virtual environment</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upgrade-pip-and-build-tools">2) Upgrade pip and build tools</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">3) Install required packages</a></li>
@@ -398,9 +398,14 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="install-and-launch-dpdak">
 <h1>01 Install and Launch DPDAK<a class="headerlink" href="#install-and-launch-dpdak" title="Link to this heading">#</a></h1>
-<p>This page shows how to download and start DPDak on Windows. If double-click startup fails, use the system Python method below. All commands are for Windows PowerShell.</p>
-<section id="quick-start">
-<h2>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
+<p>This page shows how to run DPDak on Windows, macOS, and Linux.</p>
+<ul class="simple">
+<li><p>Windows: try Quick start first (double-click launcher).</p></li>
+<li><p>macOS/Linux: go directly to Method 2 (system Python).</p></li>
+</ul>
+<p>If the Windows quick start doesn’t work or reports missing packages, use Method 2.</p>
+<section id="method-1-quick-start-windows">
+<h2>Method 1: Quick start (Windows)<a class="headerlink" href="#method-1-quick-start-windows" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Download: <a class="reference external" href="https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing">https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing</a></p></li>
 <li><p>Unzip, then double-click <code class="docutils literal notranslate"><span class="pre">dpdak.bat</span></code> in the folder. The DPDAK UI should open.</p></li>
@@ -415,12 +420,17 @@ document.write(`
 <p>If it doesn’t start or reports missing packages, use the Python-based method below.</p>
 </section>
 <hr class="docutils" />
-<section id="method-2-run-with-a-system-python-environment">
-<h2>Method 2: Run with a system Python environment<a class="headerlink" href="#method-2-run-with-a-system-python-environment" title="Link to this heading">#</a></h2>
+<section id="method-2-run-with-a-system-python-environment-windows-macos-linux">
+<h2>Method 2: Run with a system Python environment (Windows/macOS/Linux)<a class="headerlink" href="#method-2-run-with-a-system-python-environment-windows-macos-linux" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Download: <a class="reference external" href="https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing">https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing</a></p></li>
+<li><p>Unzip the archive, open a terminal, and change into the <code class="docutils literal notranslate"><span class="pre">dpdak</span></code> folder.</p></li>
+</ul>
+<p>macOS/Linux: start here. Windows: use this if Quick start doesn’t work.</p>
 <p>Create an isolated virtual environment, install the required packages, and start DPDAK via a small launcher script. This keeps your system clean and is easy to reproduce.</p>
-<section id="install-python">
-<h3>0) Install Python<a class="headerlink" href="#install-python" title="Link to this heading">#</a></h3>
-<p>If you already have Python installed, please ignore this</p>
+<section id="install-python-windows-only">
+<h3>0) Install Python (Windows only)<a class="headerlink" href="#install-python-windows-only" title="Link to this heading">#</a></h3>
+<p>If you already have Python installed, please skip to <a class="reference internal" href="#venv-create-activate"><span class="std std-ref">Create and activate a virtual environment</span></a>. On macOS/Linux, Python is typically preinstalled—skip to Step 1.</p>
 <ol class="arabic simple">
 <li><p>Go to <a class="reference external" href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></p></li>
 <li><p>Download “Windows installer (64-bit)”.</p></li>
@@ -433,17 +443,34 @@ document.write(`
 <p>You should see a version like <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.11.x</span></code>.</p>
 </section>
 <section id="create-and-activate-a-virtual-environment">
-<h3>1) Create and activate a virtual environment<a class="headerlink" href="#create-and-activate-a-virtual-environment" title="Link to this heading">#</a></h3>
-<p>In your DPDAK folder (<strong>PowerShell Terminal</strong>, You can open it by searching for PowerShell.), run:</p>
+<span id="venv-create-activate"></span><h3>1) Create and activate a virtual environment<a class="headerlink" href="#create-and-activate-a-virtual-environment" title="Link to this heading">#</a></h3>
+<p>In your DPDAK folder, run the commands for your OS:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="windows" for="sd-tab-item-0">
+Windows (PowerShell)</label><div class="sd-tab-content docutils">
 <div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># Create venv</span>
 <span class="n">python</span> <span class="n">-m</span> <span class="n">venv</span> <span class="p">.</span><span class="n">venv</span>
 
 <span class="c"># Activate (PowerShell)</span>
 <span class="p">./.</span><span class="n">venv</span><span class="p">/</span><span class="n">Scripts</span><span class="p">/</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
-
-<span class="c"># If blocked by execution policy, allow scripts for this session first:</span>
-<span class="c"># Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass</span>
 </pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="unix" for="sd-tab-item-1">
+macOS / Linux (bash/zsh)</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create venv (use python3 on most systems)</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+
+<span class="c1"># Activate (bash/zsh)</span>
+<span class="nb">source</span><span class="w"> </span>./.venv/bin/activate
+
+<span class="c1"># If &#39;python3&#39; is not found, try &#39;python&#39;</span>
+<span class="c1"># python -m venv .venv</span>
+</pre></div>
+</div>
+</div>
 </div>
 <p>You should see <code class="docutils literal notranslate"><span class="pre">(.venv)</span></code> at the start of the prompt after activation.</p>
 </section>
@@ -452,6 +479,7 @@ document.write(`
 <div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">-m</span> <span class="n">pip</span> <span class="n">install</span> <span class="p">-</span><span class="n">-upgrade</span> <span class="n">pip</span> <span class="n">setuptools</span> <span class="n">wheel</span>
 </pre></div>
 </div>
+<p>If ‘python’ isn’t found on macOS/Linux, use ‘python3 -m pip’ instead.</p>
 </section>
 <section id="install-required-packages">
 <h3>3) Install required packages<a class="headerlink" href="#install-required-packages" title="Link to this heading">#</a></h3>
@@ -477,6 +505,7 @@ document.write(`
 <span class="c1"># === 1) Compatibility: old top-level PIL module names ===</span>
 <span class="c1"># Map legacy imports (Image, ImageFont, etc.) to Pillow equivalents.</span>
 <span class="n">_aliases</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;image&quot;</span><span class="p">:</span>      <span class="s2">&quot;PIL.Image&quot;</span><span class="p">,</span>
 	<span class="s2">&quot;Image&quot;</span><span class="p">:</span>      <span class="s2">&quot;PIL.Image&quot;</span><span class="p">,</span>
 	<span class="s2">&quot;ImageFont&quot;</span><span class="p">:</span>  <span class="s2">&quot;PIL.ImageFont&quot;</span><span class="p">,</span>
 	<span class="s2">&quot;ImageDraw&quot;</span><span class="p">:</span>  <span class="s2">&quot;PIL.ImageDraw&quot;</span><span class="p">,</span>
@@ -527,9 +556,6 @@ document.write(`
 </pre></div>
 </div>
 <p>DPDAK should start. Use this command next time as well (activate the venv first).</p>
-<blockquote>
-<div><p>If your <code class="docutils literal notranslate"><span class="pre">main.py</span></code> is in a different location, place <code class="docutils literal notranslate"><span class="pre">run_dpdak.py</span></code> alongside it, or adjust the script to read the correct path to <code class="docutils literal notranslate"><span class="pre">main.py</span></code>.</p>
-</div></blockquote>
 </section>
 </section>
 </section>
@@ -589,9 +615,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick start</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-run-with-a-system-python-environment">Method 2: Run with a system Python environment</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python">0) Install Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-quick-start-windows">Method 1: Quick start (Windows)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-run-with-a-system-python-environment-windows-macos-linux">Method 2: Run with a system Python environment (Windows/macOS/Linux)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python-windows-only">0) Install Python (Windows only)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-activate-a-virtual-environment">1) Create and activate a virtual environment</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upgrade-pip-and-build-tools">2) Upgrade pip and build tools</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">3) Install required packages</a></li>
@@ -623,7 +649,7 @@ By Yufeng Zhai / DESY
 
   <p class="copyright">
     
-      © Copyright 2025 Yufeng Zhai / DESY.
+      © Copyright 2025 FS-SMA / DESY.
       <br/>
     
   </p>
