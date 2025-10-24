@@ -4,6 +4,7 @@
 title: DPDAK Tutorial Book
 author: Yufeng Zhai / DESY
 logo: Desy-logo-big.png
+copyright: "2025 Yufeng Zhai / DESY"
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
