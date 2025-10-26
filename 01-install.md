@@ -13,7 +13,7 @@ If the Windows quick start doesn’t work or reports missing packages, use Metho
 - Unzip, then double-click `dpdak.bat` in the folder. The DPDAK UI should open.
 
 
-```{figure} images/01-install/${curr4ntFi10/23/20254Npm324No41761237121133t}-${y4pmr}${32ont6}${4pmt4}-${06}${32}${01}.png
+```{figure} images/01-install/dpdak-first-open.png
 :width: 30%
 :name: fig-dpdak-first-open
 DPDAK first launch.
@@ -87,10 +87,10 @@ source ./.venv/bin/activate
 
 You should see `(.venv)` at the start of the prompt after activation.
 
-### 2) Upgrade pip and build tools
+### 2) Upgrade pip
 
 ```powershell
-python -m pip install --upgrade pip setuptools wheel
+python -m pip install --upgrade pip
 ```
 
 If 'python' isn’t found on macOS/Linux, use 'python3 -m pip' instead.

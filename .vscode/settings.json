@@ -1,0 +1,13 @@
+{
+  // Save pasted images under images/<current-md-file-name>/
+  "pasteImage.path": "${projectRoot}/images/${currentFileNameWithoutExt}",
+  // Use a timestamp file name: 20251026-153045.png
+  "pasteImage.defaultName": "YYYYMMDD-HHmmss",
+  // Always use forward slashes in Markdown paths (even on Windows)
+  "pasteImage.forceUnixStyleSeparator": true,
+  // Optional: prompt to quickly rename image on paste (only file name)
+  "pasteImage.showFilePathConfirmInputBox": true,
+  "pasteImage.filePathConfirmInputBoxMode": "onlyName",
+  // Insert a MyST figure block for Jupyter Book instead of plain markdown image
+  "pasteImage.insertPattern": "```{figure} ${imageFilePath}\n:width: 25%\n:name: fig-${currentFileNameWithoutExt}-${imageFileNameWithoutExt}\nCaption here\n```"
+}

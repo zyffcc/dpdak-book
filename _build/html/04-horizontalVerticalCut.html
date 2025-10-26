@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>04 Horizontal and Vertical Cuts &#8212; DPDAK Tutorial Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/lightbox.css?v=68759a51" />
+    <link rel="stylesheet" type="text/css" href="_static/tables.css?v=e6a01aab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04-horizontalVerticalCut';</script>
+    <script src="_static/lightbox.js?v=3dd2c040"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="05 In-situ Processing (time series)" href="05-insituProcessing.html" />
+    <link rel="prev" title="03 Calibration" href="03-calibration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/Desy-logo-big.png" class="logo__image only-light" alt="DPDAK Tutorial Book - Home"/>
+    <script>document.write(`<img src="_static/Desy-logo-big.png" class="logo__image only-dark" alt="DPDAK Tutorial Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    DPDAK (Directly Programmable Data Analysis Kit) Tutorial
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-install.html">01 Install and Launch DPDAK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-quickstart.html">02 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-calibration.html">03 Calibration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">04 Horizontal and Vertical Cuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-insituProcessing.html">05 In-situ Processing (time series)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zyffcc/dpdak-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zyffcc/dpdak-book/issues/new?title=Issue%20on%20page%20%2F04-horizontalVerticalCut.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/04-horizontalVerticalCut.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>04 Horizontal and Vertical Cuts</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-need">What you need</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-required-modules">1) Add the required modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enter-geometry-in-q-space">2) Enter geometry in q space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-sample-image-and-open-the-display">3) Load the sample image and open the display</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#horizontal-cut-in-plane-structure">4) Horizontal cut (in-plane structure)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vertical-cut-out-of-plane-structure">5) Vertical cut (out-of-plane structure)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-the-1d-curves">6) Export the 1D curves</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="horizontal-and-vertical-cuts">
+<h1>04 Horizontal and Vertical Cuts<a class="headerlink" href="#horizontal-and-vertical-cuts" title="Link to this heading">#</a></h1>
+<p>Reducing a 2D GISAXS/SAXS image to a 1D line profile is a simple way to make features visible and quantify in-plane or out-of-plane structure. In GISAXS, a common choice is a horizontal cut near the Yoneda band; for film thickness and vertical correlations, a vertical cut is useful.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Yoneda enhancement occurs when the exit angle equals the material’s critical angle, producing a pronounced intensity band. Near this angle, the Born term dominates, so standard SAXS-like form-factor/structure-factor analysis is often applicable.</p>
+</div>
+<p>Physics quick ref:</p>
+<ul class="simple">
+<li><p>Refractive index for X-rays: <span class="math notranslate nohighlight">\(n = 1 - \delta + i\beta\)</span>. The critical angle (radians) is approximately <span class="math notranslate nohighlight">\(\theta_c \approx \sqrt{2\delta}\)</span>. Values for <span class="math notranslate nohighlight">\(\delta,\beta\)</span> depend on energy and material.</p></li>
+<li><p>Look up <span class="math notranslate nohighlight">\(\delta,\beta\)</span> and <span class="math notranslate nohighlight">\(\theta_c\)</span> at the CXRO database: <a class="reference external" href="https://henke.lbl.gov/optical_constants/">https://henke.lbl.gov/optical_constants/</a></p></li>
+</ul>
+<hr class="docutils" />
+<section id="what-you-need">
+<h2>What you need<a class="headerlink" href="#what-you-need" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Example data (if not downloaded yet in Section 03-Calibration): <a class="reference external" href="https://drive.google.com/drive/folders/1Sl78Z_ynYPighNf874BKksCT4IGr0OQR?usp=sharing">https://drive.google.com/drive/folders/1Sl78Z_ynYPighNf874BKksCT4IGr0OQR?usp=sharing</a></p>
+<ul>
+<li><p>Use file: <code class="docutils literal notranslate"><span class="pre">exp_data/single_data/jg_4nm_au_bs_00001.cbf</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="add-the-required-modules">
+<h2>1) Add the required modules<a class="headerlink" href="#add-the-required-modules" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Ensure Image Logger is in the workflow</strong> (from STANDARD PLUGINS → data input → Image Logger).</p></li>
+<li><p><strong>Add q space (q_xy, qz)</strong> (from DESY PLUGINS → data input) to provide q-coordinates.</p></li>
+<li><p><strong>Add Line Integration P03</strong> (used for both horizontal and vertical cuts).</p></li>
+</ul>
+<figure class="align-default" id="fig-hv-plugins">
+<a class="reference internal image-reference" href="_images/HVCutPlugins.png"><img alt="_images/HVCutPlugins.png" src="_images/HVCutPlugins.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Modules used for cuts: Image Logger, q space, Line Integration P03</span><a class="headerlink" href="#fig-hv-plugins" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<hr class="docutils" />
+<section id="enter-geometry-in-q-space">
+<h2>2) Enter geometry in q space<a class="headerlink" href="#enter-geometry-in-q-space" title="Link to this heading">#</a></h2>
+<p>You can reuse the calibrated values from chapter 03 (recommended), or enter:</p>
+<ul class="simple">
+<li><p>Wavelength = 1.045 Å</p></li>
+<li><p>Distance = 2565 mm</p></li>
+<li><p>Pixel size X = 172 µm, Pixel size Y = 172 µm</p></li>
+<li><p>Beam Center X = 791 px, Beam Center Y = 368 px</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span> = 0.4°; rotation = 0; tilt = 0</p></li>
+</ul>
+<p><strong>Enter these values in the q space plugin.</strong></p>
+<figure class="align-default" id="fig-qspace-input">
+<a class="reference internal image-reference" href="_images/qSpaceInput.png"><img alt="_images/qSpaceInput.png" src="_images/qSpaceInput.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Enter beamline geometry in the q space plugin</span><a class="headerlink" href="#fig-qspace-input" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<hr class="docutils" />
+<section id="load-the-sample-image-and-open-the-display">
+<h2>3) Load the sample image and open the display<a class="headerlink" href="#load-the-sample-image-and-open-the-display" title="Link to this heading">#</a></h2>
+<p><strong>Load <code class="docutils literal notranslate"><span class="pre">jg_4nm_au_bs_00001.cbf</span></code> in Image Logger.</strong> Then <strong>open Tools → Image Display</strong> (if already open, reuse it).</p>
+<figure class="align-default" id="fig-load-single">
+<a class="reference internal image-reference" href="_images/LoadSingleImage.png"><img alt="_images/LoadSingleImage.png" src="_images/LoadSingleImage.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Load a single image and open the image display</span><a class="headerlink" href="#fig-load-single" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<hr class="docutils" />
+<section id="horizontal-cut-in-plane-structure">
+<h2>4) Horizontal cut (in-plane structure)<a class="headerlink" href="#horizontal-cut-in-plane-structure" title="Link to this heading">#</a></h2>
+<p>For a known material, <strong>place the cut near the Yoneda band</strong>. If refractive indices are uncertain, <strong>choose the row where lateral Bragg peaks are strongest.</strong> In this dataset (Au nanoparticles on Si), there are pronounced lateral peaks—so we select that region.</p>
+<p><strong>Set Cut Direction = Horizontal.</strong></p>
+<figure class="align-default" id="fig-h-cut">
+<a class="reference internal image-reference" href="_images/HorizontalCut.png"><img alt="_images/HorizontalCut.png" src="_images/HorizontalCut.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Define a horizontal cut region</span><a class="headerlink" href="#fig-h-cut" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Coordinates are referenced to the top-left corner of the selected rectangle. Example parameters:</p>
+<ul class="simple">
+<li><p>x = 430, y = 495</p></li>
+<li><p>width = 700, height = 10 (integration thickness)</p></li>
+</ul>
+<p><strong>Open Tools → Multi Plot.</strong></p>
+<figure class="align-default" id="fig-multiplot-panel">
+<a class="reference internal image-reference" href="_images/MutiPlotPanel.png"><img alt="_images/MutiPlotPanel.png" src="_images/MutiPlotPanel.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">Open Multi Plot to visualize the cut</span><a class="headerlink" href="#fig-multiplot-panel" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Set Sequence to 1</strong> (process only 00001). <strong>Click the Run arrow.</strong> If prompted to save previous results, <strong>choose No</strong> for this demo.</p>
+<figure class="align-default" id="fig-run-hcut">
+<a class="reference internal image-reference" href="_images/RunHorizontalCut.png"><img alt="_images/RunHorizontalCut.png" src="_images/RunHorizontalCut.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Run the horizontal cut</span><a class="headerlink" href="#fig-run-hcut" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>If the right panel looks empty, <strong>open Multi Plot → Config</strong> and select the data sources:</p>
+<ul class="simple">
+<li><p>x: Line Integration P03 → x-Axis</p></li>
+<li><p>y: Line Integration P03 → Intensity</p></li>
+</ul>
+<p>For scattering curves, <strong>set y-axis Scaling to log</strong>.</p>
+<figure class="align-default" id="fig-multiplot-config">
+<a class="reference internal image-reference" href="_images/MultiPlotConfig.png"><img alt="_images/MultiPlotConfig.png" src="_images/MultiPlotConfig.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Configure axes for the line profile (log y)</span><a class="headerlink" href="#fig-multiplot-config" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-multiplot-result">
+<a class="reference internal image-reference" href="_images/MutiPlotResultShow.png"><img alt="_images/MutiPlotResultShow.png" src="_images/MutiPlotResultShow.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">Horizontal cut result</span><a class="headerlink" href="#fig-multiplot-result" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Interpretation:</p>
+<ul class="simple">
+<li><p>Peak positions along the horizontal cut relate to in-plane nearest-neighbor distances: <span class="math notranslate nohighlight">\(d = 2\pi/q_y\)</span>.</p></li>
+<li><p>Integration height trades off SNR vs resolution; too large a height may smear features if <span class="math notranslate nohighlight">\(q_z\)</span> varies significantly.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="vertical-cut-out-of-plane-structure">
+<h2>5) Vertical cut (out-of-plane structure)<a class="headerlink" href="#vertical-cut-out-of-plane-structure" title="Link to this heading">#</a></h2>
+<p>You can either reuse the Line Integration P03 module (change direction) or <strong>add a second Line Integration P03</strong> dedicated to vertical cuts.</p>
+<figure class="align-default" id="fig-v-plugin">
+<a class="reference internal image-reference" href="_images/VerticalCutPlugin.png"><img alt="_images/VerticalCutPlugin.png" src="_images/VerticalCutPlugin.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">Add a second Line Integration module for vertical cuts (optional)</span><a class="headerlink" href="#fig-v-plugin" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Set Cut Direction = Vertical</strong> and choose a region such as:</p>
+<ul class="simple">
+<li><p>x = 791, y = 430</p></li>
+<li><p>width = 3, height = 400</p></li>
+</ul>
+<p>If you added a second module, <strong>update Multi Plot → Config</strong> to use it:</p>
+<ul class="simple">
+<li><p>x: Line Integration P03 2 → x-Axis</p></li>
+<li><p>y: Line Integration P03 2 → Intensity</p></li>
+</ul>
+<p>Then <strong>click Run</strong>.</p>
+<figure class="align-default" id="fig-v-cut">
+<a class="reference internal image-reference" href="_images/VerticalCutPanel.png"><img alt="_images/VerticalCutPanel.png" src="_images/VerticalCutPanel.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">Run the vertical cut</span><a class="headerlink" href="#fig-v-cut" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Interpretation:</p>
+<ul class="simple">
+<li><p>Vertical cuts emphasize out-of-plane correlations (thickness fringes, vertical stacking), often analyzed near/above Yoneda.</p></li>
+<li><p>If a specular ridge is present, consider masking the direct beam/beamstop region.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="export-the-1d-curves">
+<h2>6) Export the 1D curves<a class="headerlink" href="#export-the-1d-curves" title="Link to this heading">#</a></h2>
+<p>For ASCII output (dat), <strong>open Export → DB Text Export</strong> and <strong>select the datasets to export.</strong></p>
+<figure class="align-default" id="fig-export-dat">
+<a class="reference internal image-reference" href="_images/exportDat.png"><img alt="_images/exportDat.png" src="_images/exportDat.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">Export to ASCII (dat)</span><a class="headerlink" href="#fig-export-dat" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-export-panel">
+<a class="reference internal image-reference" href="_images/ExportPanel.png"><img alt="_images/ExportPanel.png" src="_images/ExportPanel.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 27 </span><span class="caption-text">Select the curves to export</span><a class="headerlink" href="#fig-export-panel" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03-calibration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">03 Calibration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05-insituProcessing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">05 In-situ Processing (time series)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-need">What you need</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-required-modules">1) Add the required modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enter-geometry-in-q-space">2) Enter geometry in q space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-sample-image-and-open-the-display">3) Load the sample image and open the display</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#horizontal-cut-in-plane-structure">4) Horizontal cut (in-plane structure)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vertical-cut-out-of-plane-structure">5) Vertical cut (out-of-plane structure)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-the-1d-curves">6) Export the 1D curves</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yufeng Zhai / DESY
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025 FS-SMA / DESY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

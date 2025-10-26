@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/lightbox.css?v=68759a51" />
@@ -65,6 +65,7 @@
     <script src="_static/lightbox.js?v=3dd2c040"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="03 Calibration" href="03-calibration.html" />
     <link rel="prev" title="01 Install and Launch DPDAK" href="01-install.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -186,6 +187,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-install.html">01 Install and Launch DPDAK</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">02 Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-calibration.html">03 Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-horizontalVerticalCut.html">04 Horizontal and Vertical Cuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-insituProcessing.html">05 In-situ Processing (time series)</a></li>
 </ul>
 
     </div>
@@ -384,8 +388,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-plugins-panel">1) Open the Plugins panel</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-minimal-workflow-import-gisaxs-data">2) Build the minimal workflow: import GISAXS data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-a-sequence-and-run">3) Select a sequence and run</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tweak-display-settings-log-colorbar-rotation">4) Tweak display settings (log colorbar, rotation, …)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrap-up-and-whats-next">Wrap-up and what’s next</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-next">What’s next</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-pixels-to-q-gisaxs-geometry">From pixels to q (GISAXS geometry)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-pixel-positions-relate-to-angles">How pixel positions relate to angles</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calibrate-l-and-the-beam-center">Calibrate L and the beam center</a></li>
@@ -408,23 +411,23 @@ document.write(`
 <p>This page gives you a minimal, working DPDAK workflow and explains the core logic:</p>
 <ul class="simple">
 <li><p>DPDAK is module-based; modules are chained into a “workflow”.</p></li>
-<li><p>A minimal workflow is typically: data input (Image Logger) → visualization (Image Display) → analysis modules.</p></li>
-<li><p>You can add/remove/reorder modules and re-run; the right-hand display updates accordingly.</p></li>
+<li><p>A minimal workflow is typically: data input (Image Logger) → analysis modules.</p></li>
+<li><p>You can add/remove/reorder modules and <strong>click ok</strong>; the main window display updates accordingly.</p></li>
 </ul>
 <hr class="docutils" />
 <section id="open-the-plugins-panel">
 <h2>1) Open the Plugins panel<a class="headerlink" href="#open-the-plugins-panel" title="Link to this heading">#</a></h2>
-<p>Locate the Plugins button in the main window.</p>
+<p><strong>Locate the Plugins button</strong> in the main window.</p>
 <figure class="align-default" id="fig-qs-plugin-button">
-<a class="reference internal image-reference" href="_images/20255Npm115No51761315078622t}-${y5pmr}${11ont4}${5pmt5}-${04}${11}${18}.png"><img alt="_images/20255Npm115No51761315078622t%7D-%24%7By5pmr%7D%24%7B11ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B11%7D%24%7B18%7D.png" src="_images/20255Npm115No51761315078622t%7D-%24%7By5pmr%7D%24%7B11ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B11%7D%24%7B18%7D.png" style="width: 25%;" />
+<a class="reference internal image-reference" href="_images/qs-plugin-button.png"><img alt="_images/qs-plugin-button.png" src="_images/qs-plugin-button.png" style="width: 25%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Plugins button location</span><a class="headerlink" href="#fig-qs-plugin-button" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Click it to open the Plugins/workflow manager.</p>
+<p><strong>Click it to open the Plugins/workflow manager.</strong></p>
 <figure class="align-default" id="fig-qs-plugin-opened">
-<a class="reference internal image-reference" href="_images/20255Npm125No51761315169683t}-${y5pmr}${12ont4}${5pmt5}-${04}${12}${49}.png"><img alt="_images/20255Npm125No51761315169683t%7D-%24%7By5pmr%7D%24%7B12ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B12%7D%24%7B49%7D.png" src="_images/20255Npm125No51761315169683t%7D-%24%7By5pmr%7D%24%7B12ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B12%7D%24%7B49%7D.png" style="width: 25%;" />
+<a class="reference internal image-reference" href="_images/qs-plugin-opened.png"><img alt="_images/qs-plugin-opened.png" src="_images/qs-plugin-opened.png" style="width: 25%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 3 </span><span class="caption-text">Plugins panel opened</span><a class="headerlink" href="#fig-qs-plugin-opened" title="Link to this image">#</a></p>
@@ -435,34 +438,47 @@ document.write(`
 <section id="build-the-minimal-workflow-import-gisaxs-data">
 <h2>2) Build the minimal workflow: import GISAXS data<a class="headerlink" href="#build-the-minimal-workflow-import-gisaxs-data" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Add a new module to the workflow and choose Image Logger as the data input module.</p></li>
+<li><p><strong>Add a new module to the workflow and choose Image Logger as the data input module.</strong></p></li>
 <li><p>Image Logger loads your GISAXS image data.</p></li>
 </ul>
 <figure class="align-default" id="fig-qs-add-image-logger">
-<a class="reference internal image-reference" href="_images/20255Npm245No51761315856892t}-${y5pmr}${24ont4}${5pmt5}-${04}${24}${16}.png"><img alt="_images/20255Npm245No51761315856892t%7D-%24%7By5pmr%7D%24%7B24ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B24%7D%24%7B16%7D.png" src="_images/20255Npm245No51761315856892t%7D-%24%7By5pmr%7D%24%7B24ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B24%7D%24%7B16%7D.png" style="width: 25%;" />
+<a class="reference internal image-reference" href="_images/qs-add-image-logger.png"><img alt="_images/qs-add-image-logger.png" src="_images/qs-add-image-logger.png" style="width: 25%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 4 </span><span class="caption-text">Add the Image Logger module</span><a class="headerlink" href="#fig-qs-add-image-logger" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Keep the default parameters and click OK.</p>
+<p><strong>Click OK.</strong></p>
 <figure class="align-default" id="fig-qs-image-logger-ok">
-<a class="reference internal image-reference" href="_images/20255Npm255No51761315932837t}-${y5pmr}${25ont4}${5pmt5}-${04}${25}${32}.png"><img alt="_images/20255Npm255No51761315932837t%7D-%24%7By5pmr%7D%24%7B25ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B25%7D%24%7B32%7D.png" src="_images/20255Npm255No51761315932837t%7D-%24%7By5pmr%7D%24%7B25ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B25%7D%24%7B32%7D.png" style="width: 25%;" />
+<a class="reference internal image-reference" href="_images/qs-image-logger-ok.png"><img alt="_images/qs-image-logger-ok.png" src="_images/qs-image-logger-ok.png" style="width: 25%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text">Image Logger parameters: click OK</span><a class="headerlink" href="#fig-qs-image-logger-ok" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Now the Image Logger module appears in the workflow. Use its top area to select the data path: click Browse and point to your data folder.</p>
+<p>Now the Image Logger module appears in the workflow. <strong>Use its top area to select the data path: click Browse and point to your data folder.</strong></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>To quickly preview the loaded data, use the menu Tools → Image Display to open the image display dialog.</p>
+<p>To quickly preview the loaded data, <strong>use the menu Tools → Image Display</strong> to open the image display dialog.</p>
 </div>
 <figure class="align-default" id="fig-qs-image-display-open">
-<a class="reference internal image-reference" href="_images/20255Npm335No51761316390888t}-${y5pmr}${33ont4}${5pmt5}-${04}${33}${10}.png"><img alt="_images/20255Npm335No51761316390888t%7D-%24%7By5pmr%7D%24%7B33ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B33%7D%24%7B10%7D.png" src="_images/20255Npm335No51761316390888t%7D-%24%7By5pmr%7D%24%7B33ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B33%7D%24%7B10%7D.png" style="width: 25%;" />
+<a class="reference internal image-reference" href="_images/qs-image-display-open.png"><img alt="_images/qs-image-display-open.png" src="_images/qs-image-display-open.png" style="width: 25%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6 </span><span class="caption-text">Open a quick preview with Tools → Image Display</span><a class="headerlink" href="#fig-qs-image-display-open" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the Image Display dialog, <strong>click Config to adjust</strong>:</p>
+<ul class="simple">
+<li><p>Colorbar range and scale (Log is commonly used for scattering images).</p></li>
+<li><p>Image rotation angle.</p></li>
+<li><p>Other rendering options (contrast, crop range, etc.).</p></li>
+</ul>
+<figure class="align-default" id="fig-qs-display-config">
+<a class="reference internal image-reference" href="_images/qs-display-config.png"><img alt="_images/qs-display-config.png" src="_images/qs-display-config.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Display Config (log color scale and rotation)</span><a class="headerlink" href="#fig-qs-display-config" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -471,10 +487,9 @@ document.write(`
 <h2>3) Select a sequence and run<a class="headerlink" href="#select-a-sequence-and-run" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>For P03 data, filenames commonly include a sequence suffix (e.g., 00005, 00006 …).</p></li>
-<li><p>In the Image Logger Sequence field, enter the index you want to display (e.g., 10).</p></li>
-<li><p>Click the Run arrow at the top.</p></li>
-<li><p>When asked whether to process all files, choose No (only process the current selection).</p></li>
-<li><p>The right-hand display updates to the image for 00010.</p></li>
+<li><p><strong>In the Image Logger Sequence field, enter the index you want to display (e.g., 10).</strong></p></li>
+<li><p><strong>Click the Run arrow at the top.</strong></p></li>
+<li><p>The display window updates to the image for 00010.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -482,30 +497,13 @@ document.write(`
 </div>
 </section>
 <hr class="docutils" />
-<section id="tweak-display-settings-log-colorbar-rotation">
-<h2>4) Tweak display settings (log colorbar, rotation, …)<a class="headerlink" href="#tweak-display-settings-log-colorbar-rotation" title="Link to this heading">#</a></h2>
-<p>In the Image Display dialog, click Config to adjust:</p>
-<ul class="simple">
-<li><p>Colorbar range and scale (Log is commonly used for scattering images).</p></li>
-<li><p>Image rotation angle.</p></li>
-<li><p>Other rendering options (contrast, crop range, etc.).</p></li>
-</ul>
-<figure class="align-default" id="fig-qs-display-config">
-<a class="reference internal image-reference" href="_images/20255Npm415No51761316887276t}-${y5pmr}${41ont4}${5pmt5}-${04}${41}${27}.png"><img alt="_images/20255Npm415No51761316887276t%7D-%24%7By5pmr%7D%24%7B41ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B41%7D%24%7B27%7D.png" src="_images/20255Npm415No51761316887276t%7D-%24%7By5pmr%7D%24%7B41ont4%7D%24%7B5pmt5%7D-%24%7B04%7D%24%7B41%7D%24%7B27%7D.png" style="width: 25%;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Display Config (log color scale and rotation)</span><a class="headerlink" href="#fig-qs-display-config" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<hr class="docutils" />
-<section id="wrap-up-and-whats-next">
-<h2>Wrap-up and what’s next<a class="headerlink" href="#wrap-up-and-whats-next" title="Link to this heading">#</a></h2>
+<section id="whats-next">
+<h2>What’s next<a class="headerlink" href="#whats-next" title="Link to this heading">#</a></h2>
 <p>On the image display, the axes are in pixels. For scattering we ultimately want <span class="math notranslate nohighlight">\(I(q)\)</span>, so we must map detector pixels to the scattering vector components <span class="math notranslate nohighlight">\(q_x\)</span>, <span class="math notranslate nohighlight">\(q_y\)</span>, <span class="math notranslate nohighlight">\(q_z\)</span>.</p>
 <section id="from-pixels-to-q-gisaxs-geometry">
 <h3>From pixels to q (GISAXS geometry)<a class="headerlink" href="#from-pixels-to-q-gisaxs-geometry" title="Link to this heading">#</a></h3>
 <figure class="align-default" id="fig-qs-gisaxs-geometry">
-<a class="reference internal image-reference" href="_images/20255Npm115No51761318664563t}-${y5pmr}${11ont5}${5pmt5}-${05}${11}${04}.png"><img alt="_images/20255Npm115No51761318664563t%7D-%24%7By5pmr%7D%24%7B11ont5%7D%24%7B5pmt5%7D-%24%7B05%7D%24%7B11%7D%24%7B04%7D.png" src="_images/20255Npm115No51761318664563t%7D-%24%7By5pmr%7D%24%7B11ont5%7D%24%7B5pmt5%7D-%24%7B05%7D%24%7B11%7D%24%7B04%7D.png" style="width: 25%;" />
+<a class="reference internal image-reference" href="_images/qs-gisaxs-geometry.png"><img alt="_images/qs-gisaxs-geometry.png" src="_images/qs-gisaxs-geometry.png" style="width: 25%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 8 </span><span class="caption-text">GISAXS geometry and angles</span><a class="headerlink" href="#fig-qs-gisaxs-geometry" title="Link to this image">#</a></p>
@@ -693,6 +691,15 @@ q_z
         <p class="prev-next-title">01 Install and Launch DPDAK</p>
       </div>
     </a>
+    <a class="right-next"
+       href="03-calibration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">03 Calibration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -712,8 +719,7 @@ q_z
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-plugins-panel">1) Open the Plugins panel</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-minimal-workflow-import-gisaxs-data">2) Build the minimal workflow: import GISAXS data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-a-sequence-and-run">3) Select a sequence and run</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tweak-display-settings-log-colorbar-rotation">4) Tweak display settings (log colorbar, rotation, …)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrap-up-and-whats-next">Wrap-up and what’s next</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-next">What’s next</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-pixels-to-q-gisaxs-geometry">From pixels to q (GISAXS geometry)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-pixel-positions-relate-to-angles">How pixel positions relate to angles</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calibrate-l-and-the-beam-center">Calibrate L and the beam center</a></li>
