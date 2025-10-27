@@ -108,63 +108,13 @@ python -c "import numpy, scipy, wx, networkx, matplotlib, PIL, fabio, pyFAI, h5p
 ```
 
 - Seeing `All OK!` means dependencies are ready.
-- If `wx` fails to import, prefer Python 3.10–3.12. Wheels for other versions may be unavailable.
 
 ### 5) Compatibility patch + launcher
 
-In the directory that contains `main.py`, create a file named `run_dpdak.py` with the content below (UTF‑8 encoding):
+In the directory that contains `main.py`, download a patch named `run_dpdak.py` to the `DPDAK_WIN_64bit__V1_5_0` folder:
 
-```python
-import sys, threading, importlib
+Download link: <https://drive.google.com/drive/folders/10SoGPdudpQa8YA8bT55A7-uhIBTMS54N?usp=sharing>
 
-# === 1) Compatibility: old top-level PIL module names ===
-# Map legacy imports (Image, ImageFont, etc.) to Pillow equivalents.
-_aliases = {
-    "image":      "PIL.Image",
-	"Image":      "PIL.Image",
-	"ImageFont":  "PIL.ImageFont",
-	"ImageDraw":  "PIL.ImageDraw",
-	"ImageFilter":"PIL.ImageFilter",
-}
-for k, v in _aliases.items():
-	try:
-		sys.modules.setdefault(k, importlib.import_module(v))
-	except Exception:
-		pass
-
-# === 2) Compatibility: Python 2 → 3 threading API ===
-# Add aliases for methods that were renamed in Python 3.
-Thread = threading.Thread
-if hasattr(Thread, "is_alive") and not hasattr(Thread, "isAlive"):
-	Thread.isAlive = Thread.is_alive
-if not hasattr(Thread, "getName"):
-	Thread.getName = lambda self: self.name
-if not hasattr(Thread, "setName"):
-	Thread.setName = lambda self, name: setattr(self, "name", name)
-if not hasattr(Thread, "isDaemon"):
-	Thread.isDaemon = lambda self: self.daemon
-if not hasattr(Thread, "setDaemon"):
-	Thread.setDaemon = lambda self, x: setattr(self, "daemon", x)
-if not hasattr(Thread, "getDaemon"):
-	Thread.getDaemon = lambda self: self.daemon
-
-# === 3) Compatibility: pyFAI module name change (since 2024.10) ===
-# Map old 'pyFAI.azimuthalIntegrator' to the new 'pyFAI.integrator.azimuthal'.
-try:
-	import pyFAI
-	_new_mod = importlib.import_module("pyFAI.integrator.azimuthal")
-	sys.modules.setdefault("pyFAI.azimuthalIntegrator", _new_mod)
-	if not hasattr(pyFAI, "azimuthalIntegrator"):
-		setattr(pyFAI, "azimuthalIntegrator", _new_mod)
-except Exception:
-	# Ignore if running with an older pyFAI version.
-	pass
-
-# === 4) Launch the original DPDAK main script ===
-with open("main.py", "rb") as f:
-	code = compile(f.read(), "main.py", "exec")
-exec(code, {"__name__": "__main__"})
-```
 
 Run it:
 

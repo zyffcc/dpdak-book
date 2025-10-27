@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/lightbox.css?v=68759a51" />
@@ -502,63 +502,12 @@ python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </
 </div>
 <ul class="simple">
 <li><p>Seeing <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">OK!</span></code> means dependencies are ready.</p></li>
-<li><p>If <code class="docutils literal notranslate"><span class="pre">wx</span></code> fails to import, prefer Python 3.10–3.12. Wheels for other versions may be unavailable.</p></li>
 </ul>
 </section>
 <section id="compatibility-patch-launcher">
 <h3>5) Compatibility patch + launcher<a class="headerlink" href="#compatibility-patch-launcher" title="Link to this heading">#</a></h3>
-<p>In the directory that contains <code class="docutils literal notranslate"><span class="pre">main.py</span></code>, create a file named <code class="docutils literal notranslate"><span class="pre">run_dpdak.py</span></code> with the content below (UTF‑8 encoding):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">threading</span><span class="o">,</span><span class="w"> </span><span class="nn">importlib</span>
-
-<span class="c1"># === 1) Compatibility: old top-level PIL module names ===</span>
-<span class="c1"># Map legacy imports (Image, ImageFont, etc.) to Pillow equivalents.</span>
-<span class="n">_aliases</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;image&quot;</span><span class="p">:</span>      <span class="s2">&quot;PIL.Image&quot;</span><span class="p">,</span>
-	<span class="s2">&quot;Image&quot;</span><span class="p">:</span>      <span class="s2">&quot;PIL.Image&quot;</span><span class="p">,</span>
-	<span class="s2">&quot;ImageFont&quot;</span><span class="p">:</span>  <span class="s2">&quot;PIL.ImageFont&quot;</span><span class="p">,</span>
-	<span class="s2">&quot;ImageDraw&quot;</span><span class="p">:</span>  <span class="s2">&quot;PIL.ImageDraw&quot;</span><span class="p">,</span>
-	<span class="s2">&quot;ImageFilter&quot;</span><span class="p">:</span><span class="s2">&quot;PIL.ImageFilter&quot;</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_aliases</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-	<span class="k">try</span><span class="p">:</span>
-		<span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
-	<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-		<span class="k">pass</span>
-
-<span class="c1"># === 2) Compatibility: Python 2 → 3 threading API ===</span>
-<span class="c1"># Add aliases for methods that were renamed in Python 3.</span>
-<span class="n">Thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span>
-<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Thread</span><span class="p">,</span> <span class="s2">&quot;is_alive&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Thread</span><span class="p">,</span> <span class="s2">&quot;isAlive&quot;</span><span class="p">):</span>
-	<span class="n">Thread</span><span class="o">.</span><span class="n">isAlive</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="n">is_alive</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Thread</span><span class="p">,</span> <span class="s2">&quot;getName&quot;</span><span class="p">):</span>
-	<span class="n">Thread</span><span class="o">.</span><span class="n">getName</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Thread</span><span class="p">,</span> <span class="s2">&quot;setName&quot;</span><span class="p">):</span>
-	<span class="n">Thread</span><span class="o">.</span><span class="n">setName</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Thread</span><span class="p">,</span> <span class="s2">&quot;isDaemon&quot;</span><span class="p">):</span>
-	<span class="n">Thread</span><span class="o">.</span><span class="n">isDaemon</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">daemon</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Thread</span><span class="p">,</span> <span class="s2">&quot;setDaemon&quot;</span><span class="p">):</span>
-	<span class="n">Thread</span><span class="o">.</span><span class="n">setDaemon</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;daemon&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Thread</span><span class="p">,</span> <span class="s2">&quot;getDaemon&quot;</span><span class="p">):</span>
-	<span class="n">Thread</span><span class="o">.</span><span class="n">getDaemon</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">daemon</span>
-
-<span class="c1"># === 3) Compatibility: pyFAI module name change (since 2024.10) ===</span>
-<span class="c1"># Map old &#39;pyFAI.azimuthalIntegrator&#39; to the new &#39;pyFAI.integrator.azimuthal&#39;.</span>
-<span class="k">try</span><span class="p">:</span>
-	<span class="kn">import</span><span class="w"> </span><span class="nn">pyFAI</span>
-	<span class="n">_new_mod</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s2">&quot;pyFAI.integrator.azimuthal&quot;</span><span class="p">)</span>
-	<span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;pyFAI.azimuthalIntegrator&quot;</span><span class="p">,</span> <span class="n">_new_mod</span><span class="p">)</span>
-	<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">pyFAI</span><span class="p">,</span> <span class="s2">&quot;azimuthalIntegrator&quot;</span><span class="p">):</span>
-		<span class="nb">setattr</span><span class="p">(</span><span class="n">pyFAI</span><span class="p">,</span> <span class="s2">&quot;azimuthalIntegrator&quot;</span><span class="p">,</span> <span class="n">_new_mod</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-	<span class="c1"># Ignore if running with an older pyFAI version.</span>
-	<span class="k">pass</span>
-
-<span class="c1"># === 4) Launch the original DPDAK main script ===</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;main.py&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-	<span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s2">&quot;main.py&quot;</span><span class="p">,</span> <span class="s2">&quot;exec&quot;</span><span class="p">)</span>
-<span class="n">exec</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;__name__&quot;</span><span class="p">:</span> <span class="s2">&quot;__main__&quot;</span><span class="p">})</span>
-</pre></div>
-</div>
+<p>In the directory that contains <code class="docutils literal notranslate"><span class="pre">main.py</span></code>, download a patch named <code class="docutils literal notranslate"><span class="pre">run_dpdak.py</span></code> to the <code class="docutils literal notranslate"><span class="pre">DPDAK_WIN_64bit__V1_5_0</span></code> folder:</p>
+<p>Download link: <a class="reference external" href="https://drive.google.com/drive/folders/10SoGPdudpQa8YA8bT55A7-uhIBTMS54N?usp=sharing">https://drive.google.com/drive/folders/10SoGPdudpQa8YA8bT55A7-uhIBTMS54N?usp=sharing</a></p>
 <p>Run it:</p>
 <div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">run_dpdak</span><span class="p">.</span><span class="n">py</span>
 </pre></div>
@@ -656,7 +605,7 @@ python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </
   <div class="footer-item">
     
 <p class="component-author">
-By Yufeng Zhai / DESY
+By Yufeng Zhai (FS-SMA / DESY)
 </p>
 
   </div>
@@ -666,7 +615,7 @@ By Yufeng Zhai / DESY
 
   <p class="copyright">
     
-      © Copyright 2025 FS-SMA / DESY.
+      © Copyright 2025 Yufeng Zhai, FS-SMA / DESY — Released under CC BY-NC-SA 4.0 License.
       <br/>
     
   </p>
