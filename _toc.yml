@@ -9,3 +9,4 @@ chapters:
 - file: 03-calibration
 - file: 04-horizontalVerticalCut
 - file: 05-insituProcessing
+- file: 06-fitting

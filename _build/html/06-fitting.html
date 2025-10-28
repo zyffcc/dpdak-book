@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>DPDAK (Directly Programmable Data Analysis Kit) Tutorial &#8212; DPDAK Tutorial Book</title>
+    <title>06 Fitting — Extracting Structural Information &#8212; DPDAK Tutorial Book</title>
   
   
   
@@ -61,11 +61,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '06-fitting';</script>
     <script src="_static/lightbox.js?v=3dd2c040"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="01 Install and Launch DPDAK" href="01-install.html" />
+    <link rel="prev" title="05 In-situ Processing (time series)" href="05-insituProcessing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -128,8 +128,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -148,7 +146,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -179,19 +177,19 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
                     DPDAK (Directly Programmable Data Analysis Kit) Tutorial
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01-install.html">01 Install and Launch DPDAK</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02-quickstart.html">02 Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03-calibration.html">03 Calibration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04-horizontalVerticalCut.html">04 Horizontal and Vertical Cuts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-insituProcessing.html">05 In-situ Processing (time series)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06-fitting.html">06 Fitting — Extracting Structural Information</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">06 Fitting — Extracting Structural Information</a></li>
 </ul>
 
     </div>
@@ -263,7 +261,7 @@
       
       
       
-      <li><a href="https://github.com/zyffcc/dpdak-book/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/zyffcc/dpdak-book/issues/new?title=Issue%20on%20page%20%2F06-fitting.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +291,7 @@
       
       
       
-      <li><a href="_sources/index.md" target="_blank"
+      <li><a href="_sources/06-fitting.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -364,7 +362,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -375,11 +375,22 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>DPDAK (Directly Programmable Data Analysis Kit) Tutorial</h1>
+    <h1>06 Fitting — Extracting Structural Information</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saxs-like-fitting-in-yoneda-peak">SAXS-like fitting in Yoneda Peak</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-clean-1d-curve-background-and-normalization">1) Prepare a clean 1D curve (background and normalization)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-the-1d-curve-in-sasview-recommended">2) Fit the 1D curve in SasView (recommended)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-model-based-gisaxs-fitting-dwba">3) 2D model-based GISAXS fitting (DWBA)</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -389,19 +400,109 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="dpdak-directly-programmable-data-analysis-kit-tutorial">
-<h1>DPDAK (Directly Programmable Data Analysis Kit) Tutorial<a class="headerlink" href="#dpdak-directly-programmable-data-analysis-kit-tutorial" title="Link to this heading">#</a></h1>
-<p>This book is a practical guide to DPDAK—from installation to reproducible, end-to-end workflows (e.g., GISAXS processing, batch runs, and parameter mapping). It is written for scientists and engineers who want to turn routine data processing into reliable, automated pipelines.</p>
-<div class="tip admonition">
-<p class="admonition-title">Who is this book for?</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="fitting-extracting-structural-information">
+<h1>06 Fitting — Extracting Structural Information<a class="headerlink" href="#fitting-extracting-structural-information" title="Link to this heading">#</a></h1>
+<p>This chapter shows how to go from GISAXS/SAXS images to quantitative structural parameters using model-based fitting. Because of the phase problem, we generally cannot invert a scattering pattern directly into the real-space density. Instead, we assume a physically reasonable particle/structure model (sphere, cylinder, ellipsoid, etc.) and fit its parameters (radius, height, aspect ratio, polydispersity, structure factor) to the measured data.</p>
+<p>We cover two routes:</p>
 <ul class="simple">
-<li><p>Experimentalists who need a <strong>quick, working setup</strong> for DPDAK.</p></li>
-<li><p>Users who run <strong>batch processing</strong> on large datasets.</p></li>
-<li><p>New lab members who need a <strong>guided, reproducible workflow</strong> for scattering data analysis.</p></li>
+<li><p>1D fitting of line cuts near the Yoneda band (SAXS-like regime)</p></li>
+<li><p>2D model-based GISAXS fitting (DWBA) with external tools</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have not prepared 1D cuts yet, see 04 Horizontal and Vertical Cuts. For time series, see 05 In‑situ Processing.</p>
 </div>
-<div class="toctree-wrapper compound">
+<hr class="docutils" />
+<section id="saxs-like-fitting-in-yoneda-peak">
+<h2>SAXS-like fitting in Yoneda Peak<a class="headerlink" href="#saxs-like-fitting-in-yoneda-peak" title="Link to this heading">#</a></h2>
+<p>In the framework of the Distorted Wave Born Approximation (DWBA), the total scattered amplitude is the coherent sum of four paths:</p>
+<figure class="align-default" id="fig-06-fitting-dwbafourtermschem">
+<a class="reference internal image-reference" href="_images/DWBAFourTermSchem.png"><img alt="_images/DWBAFourTermSchem.png" src="_images/DWBAFourTermSchem.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 32 </span><span class="caption-text">DWBA components: transmitted/reflected combinations of incident/exit waves</span><a class="headerlink" href="#fig-06-fitting-dwbafourtermschem" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="math notranslate nohighlight">
+\[
+F(\mathbf{q}) = T_i T_f F_{00} + T_i R_f F_{01} + R_i T_f F_{10} + R_i R_f F_{11},
+\]</div>
+<p>where (roughly) the first term corresponds to transmitted–transmitted (SAXS-like) and the others involve one or two reflections. At the Yoneda condition (exit angle <span class="math notranslate nohighlight">\(\alpha_f = \alpha_c\)</span>, the critical angle), the Fresnel transmission <span class="math notranslate nohighlight">\(T_f\)</span> is maximized and the reflectivity <span class="math notranslate nohighlight">\(R_f\)</span> drops just above <span class="math notranslate nohighlight">\(\alpha_c\)</span> (and approaches 1 just below <span class="math notranslate nohighlight">\(\alpha_c\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+|T_f|^2 \gg |R_f|^2.
+\]</div>
+<figure class="align-default" id="fig-06-fitting-yonedapeaktheory">
+<a class="reference internal image-reference" href="_images/YonedaPeakTheory.png"><img alt="_images/YonedaPeakTheory.png" src="_images/YonedaPeakTheory.png" style="width: 25%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 33 </span><span class="caption-text">Reflectivity/transmission near the Yoneda peak: the transmission enhances at <span class="math notranslate nohighlight">\(\alpha_c\)</span>, making the SAXS term dominant.</span><a class="headerlink" href="#fig-06-fitting-yonedapeaktheory" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Two incident-angle regimes at the Yoneda exit angle (<span class="math notranslate nohighlight">\(\alpha_f \approx \alpha_c\)</span>):</p>
+<ul class="simple">
+<li><p>Case 1: <span class="math notranslate nohighlight">\(\alpha_i \approx \alpha_c\)</span>. Then <span class="math notranslate nohighlight">\(T_i\)</span> is maximal and <span class="math notranslate nohighlight">\(R_i\)</span> is small; with <span class="math notranslate nohighlight">\(T_f\)</span> maximal and <span class="math notranslate nohighlight">\(R_f\)</span> small above <span class="math notranslate nohighlight">\(\alpha_c\)</span>, <span class="math notranslate nohighlight">\(A_{00}\)</span> (<span class="math notranslate nohighlight">\(T_i T_f F_{00}\)</span>) dominates.</p></li>
+<li><p>Case 2: <span class="math notranslate nohighlight">\(\alpha_i &gt; \alpha_c\)</span>. Then <span class="math notranslate nohighlight">\(T_i \approx 1\)</span> (no enhancement) and <span class="math notranslate nohighlight">\(R_i\)</span> is small; with <span class="math notranslate nohighlight">\(T_f\)</span> maximal and <span class="math notranslate nohighlight">\(R_f\)</span> small, <span class="math notranslate nohighlight">\(A_{00}\)</span> still dominates.</p></li>
+</ul>
+<p>Hence, for <span class="math notranslate nohighlight">\(\alpha_i \gtrsim \alpha_c\)</span> and <span class="math notranslate nohighlight">\(\alpha_f \approx \alpha_c\)</span>, the first term dominates and the intensity reduces to the Born expression:</p>
+<div class="math notranslate nohighlight">
+\[
+I(\mathbf{q}) \approx |F_{00}|^2 \propto |F(\mathbf{q})|^2,
+\]</div>
+<p>which justifies using standard SAXS form-factor/structure-factor models to fit horizontal cuts taken close to the Yoneda band.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <span class="math notranslate nohighlight">\(\alpha_i &lt; \alpha_c\)</span> (sub‑critical incidence), <span class="math notranslate nohighlight">\(R_i \approx 1\)</span> and <span class="math notranslate nohighlight">\(T_i\)</span> is small; in that case the terms containing <span class="math notranslate nohighlight">\(R_i\)</span> (<span class="math notranslate nohighlight">\(A_{10}\)</span>, <span class="math notranslate nohighlight">\(A_{11}\)</span>) may not be negligible, and a full DWBA model is safer.</p>
 </div>
+</section>
+<hr class="docutils" />
+<section id="prepare-a-clean-1d-curve-background-and-normalization">
+<h2>1) Prepare a clean 1D curve (background and normalization)<a class="headerlink" href="#prepare-a-clean-1d-curve-background-and-normalization" title="Link to this heading">#</a></h2>
+<p>For reliable fitting, first obtain a background-subtracted, normalized 1D line profile.</p>
+<p>What you need:</p>
+<ul class="simple">
+<li><p>Sample image(s): e.g. <code class="docutils literal notranslate"><span class="pre">exp_data/single_data/jg_4nm_au_bs_00001.cbf</span></code></p></li>
+<li><p>Background image(s) measured on a clean substrate (GISAXS): e.g. <code class="docutils literal notranslate"><span class="pre">background_Silicon/silicon_00004_00001.cbf</span></code></p></li>
+<li><p>Exposure time and incident flux (I0) for normalization</p></li>
+</ul>
+<p>Steps:</p>
+<ol class="arabic simple">
+<li><p>Subtract the substrate/background curve: <span class="math notranslate nohighlight">\(I_\text{sub} = I_\text{sample} - k\, I_\text{bg}\)</span>.</p>
+<ul class="simple">
+<li><p>For the example data a practical choice is: <span class="math notranslate nohighlight">\(I_\text{sub} = I_{\mathrm{bs}} - 5\times 0.95\; I_{\mathrm{bg}}\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Create a horizontal cut near the Yoneda band (see 04).</p>
+<ul class="simple">
+<li><p>If you know the particle shape (e.g., spheres), you can fine‑tune the scale <span class="math notranslate nohighlight">\(k\)</span> by enforcing Porod behavior at high <span class="math notranslate nohighlight">\(q\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Export the clean 1D curve as ASCII (dat). You can use Export → DB Text Export.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="fit-the-1d-curve-in-sasview-recommended">
+<h2>2) Fit the 1D curve in SasView (recommended)<a class="headerlink" href="#fit-the-1d-curve-in-sasview-recommended" title="Link to this heading">#</a></h2>
+<p>SasView provides many form factors (sphere, cylinder, ellipsoid, core‑shell) and structure factors (hard‑sphere, sticky‑hard‑sphere, etc.). Workflow:</p>
+<ol class="arabic simple">
+<li><p>Import the exported dat file.</p></li>
+<li><p>Choose a model (e.g., Sphere) and, if needed, a structure factor.</p></li>
+<li><p>Set wavelength/scale if required by the model definition.</p></li>
+<li><p>Add polydispersity where appropriate (radius distribution, etc.).</p></li>
+<li><p>Fit and inspect: peak positions (mean spacing), widths (correlation lengths), scaling (volume fraction/contrast).</p></li>
+</ol>
+<p>Link: <a class="reference external" href="https://www.sasview.org/">https://www.sasview.org/</a></p>
+</section>
+<hr class="docutils" />
+<section id="d-model-based-gisaxs-fitting-dwba">
+<h2>3) 2D model-based GISAXS fitting (DWBA)<a class="headerlink" href="#d-model-based-gisaxs-fitting-dwba" title="Link to this heading">#</a></h2>
+<p>For full 2D fits including refraction and multiple scattering channels, use DWBA‑based tools such as BornAgain. Define layers (substrate, film), particles (shape, size, distributions), and instrument geometry; then simulate and fit the 2D pattern.</p>
+<p>Link: <a class="reference external" href="https://www.bornagainproject.org/">https://www.bornagainproject.org/</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Start from your calibrated geometry (03 Calibration) and the ROI definitions used for 1D cuts (04). Use masks for beamstop and bad pixels.</p>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -434,14 +535,14 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="01-install.html"
-       title="next page">
+    <a class="left-prev"
+       href="05-insituProcessing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">01 Install and Launch DPDAK</p>
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">05 In-situ Processing (time series)</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -449,6 +550,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saxs-like-fitting-in-yoneda-peak">SAXS-like fitting in Yoneda Peak</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-clean-1d-curve-background-and-normalization">1) Prepare a clean 1D curve (background and normalization)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-the-1d-curve-in-sasview-recommended">2) Fit the 1D curve in SasView (recommended)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-model-based-gisaxs-fitting-dwba">3) 2D model-based GISAXS fitting (DWBA)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
