@@ -12,6 +12,8 @@ If the Windows quick start doesn’t work or reports missing packages, use Metho
 - Download: <https://drive.google.com/file/d/1yzQ5yiSzOOpMbsBrwHcBqy4c5_rv4EB4/view?usp=sharing>
 - Unzip, then double-click `dpdak.bat` in the folder. The DPDAK UI should open.
 
+- Example data: Google Drive folder
+	https://drive.google.com/drive/folders/1Sl78Z_ynYPighNf874BKksCT4IGr0OQR?usp=sharing
 
 ```{figure} images/01-install/dpdak-first-open.png
 :width: 30%
